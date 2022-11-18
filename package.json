@@ -1,0 +1,14 @@
+{
+  "name": "@backbonedao/solid",
+  "version": "1.0.0",
+  "description": "A fully typed Solid wrapper for building Backbone apps",
+  "main": "index.ts",
+  "license": "GNU",
+  "devDependencies": {
+    "@backbonedao/types": "file:../types",
+    "@types/node": "^18.11.9"
+  },
+  "dependencies": {
+    "solid-js": "^1.6.2"
+  }
+}
