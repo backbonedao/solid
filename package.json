@@ -3,9 +3,23 @@
   "version": "1.0.0",
   "description": "A fully typed Solid wrapper for building Backbone apps",
   "main": "index.ts",
-  "license": "GNU",
+  "homepage": "https://backbone.build",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/backbonedao/solid.git"
+  },
+  "bugs": {
+    "url": "https://github.com/backbonedao/solid/issues"
+  },
+  "keywords": [
+    "backbone",
+    "solid",
+    "solidjs",
+    "web3"
+  ],
+  "license": "AGPL-3.0-or-later",
   "devDependencies": {
-    "@backbonedao/types": "file:../types",
+    "@backbonedao/types": "^1.0.0",
     "@types/node": "^18.11.9"
   },
   "dependencies": {
