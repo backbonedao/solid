@@ -5,22 +5,24 @@ import useBackbone from "./useBackbone";
 export default function useNetwork() {
   const backbone = useBackbone();
 
-  const connect = backbone.app.network.connect;
-  const disconnect = backbone.app.network.disconnect;
+  const getConnectionId = backbone.app.network.getConnectionId;
+  const getNetwork = backbone.app.network.getNetwork;
 
-  const [connectionId, setConnectionId] = createSignal(
-    backbone.app.network.getConnectionId()
-  );
-  const [network, setNetwork] = createSignal(backbone.app.network.getNetwork());
+  const [connectionId, setConnectionId] = createSignal(getConnectionId());
+  const [network, setNetwork] = createSignal(getNetwork());
 
   useInterval(
     () => {
-      if (!connectionId())
-        setConnectionId(backbone.app.network.getConnectionId());
-      if (!network()) setNetwork(backbone.app.network.getNetwork());
+      if (!connectionId()) setConnectionId(getConnectionId());
+      if (!network()) setNetwork(getNetwork());
     },
     !connectionId() || !network() ? 50 : null
   );
 
-  return { connect, disconnect, connectionId, network };
+  return {
+    connect: backbone.app.network.connect,
+    disconnect: backbone.app.network.disconnect,
+    connectionId,
+    network,
+  };
 }

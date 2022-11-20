@@ -1,28 +1,16 @@
-import { createSignal } from "solid-js";
-import useBackbone from "./useBackbone";
+import { createSignal, onMount } from "solid-js";
+import useAPI from "./useAPI";
 
-export default function useWrite() {
-  const backbone = useBackbone();
-
+export default function useWrite(params: { key: string; value }) {
   const [loading, setLoading] = createSignal(true);
   const [success, setSuccess] = createSignal(false);
 
-  const write = async ({ key, value }: { key: string; value: any }) => {
-    if (backbone.app?.backboneReactPut) {
-      await backbone.app.backboneReactPut({ key, value }).then(() => {
-        setSuccess(true);
-        setLoading(false);
-        return true;
-      });
-    } else {
-      console.error(
-        "backbone-react is missing dependencies in src/app/api.js, learn more at https://github.com/backbonedao/backbone-react/blob/main/README.md#useapi"
-      );
-      setSuccess(false);
-      setLoading(false);
-      return false;
-    }
-  };
+  const { API } = useAPI();
 
-  return { write, loading, success };
+  onMount(async () => {
+    setSuccess(await API.put(params));
+    setLoading(false);
+  });
+
+  return { loading, success };
 }

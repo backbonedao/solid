@@ -7,12 +7,11 @@ export default function useMeta() {
 
   const [meta, setMeta] = createSignal<Manifest | undefined>();
 
-  const fetch = async () =>
+  async function fetch() {
     setMeta(await backbone.app.meta._getMeta("manifest"));
+  }
 
-  onMount(() => {
-    fetch();
-  });
+  onMount(fetch);
 
   return {
     meta,
