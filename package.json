@@ -1,6 +1,6 @@
 {
   "name": "@backbonedao/solid",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A fully typed Solid wrapper for building Backbone apps",
   "main": "index.ts",
   "homepage": "https://backbone.build",
