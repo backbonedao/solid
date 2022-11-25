@@ -1,4 +1,4 @@
-import { Query } from "@backbonedao/types";
+import type { Query } from "@backbonedao/types";
 import { createSignal, onMount } from "solid-js";
 import useAPI from "./useAPI";
 
