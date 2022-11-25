@@ -1,6 +1,6 @@
 {
   "name": "@backbonedao/solid",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A fully typed Solid wrapper for building Backbone apps",
   "main": "index.ts",
   "homepage": "https://backbone.build",
@@ -20,10 +20,8 @@
     "typescript"
   ],
   "license": "AGPL-3.0-or-later",
-  "devDependencies": {
-    "@backbonedao/types": "^1.0.6"
-  },
   "dependencies": {
+    "@backbonedao/types": "^1.0.6",
     "solid-js": "^1.6.2",
     "solidjs-hooks": "^1.1.2"
   }
