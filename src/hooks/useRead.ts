@@ -8,30 +8,22 @@ export default function useRead(
 ) {
   const [data, setData] = createSignal<any>();
   const [loading, setLoading] = createSignal(true);
-  const [error, setError] = createSignal(false);
 
   const { API } = useAPI();
   const { change } = useStream();
 
   onMount(async () => {
-    const response = await API.get(key);
-
-    if (response) setData(response);
-    else {
-      console.error(`Error: failed to read value from key: ${key}`);
-      setError(true);
-    }
-
+    setData(await API.get(key));
     setLoading(false);
   });
 
   if (options.reactive) {
     createEffect(() => {
-      const { key: changedKey, value } = change();
+      const changed = change();
 
-      if (changedKey === key) setData(value);
+      if (changed && changed.key === key) setData(changed.value);
     });
   }
 
-  return { data, loading, error };
+  return { data, loading };
 }
